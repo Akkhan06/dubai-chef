@@ -11,20 +11,18 @@ import SingleCards from './components/SingleCards/SingleCards'
 import Contact from './components/Contact'
 import { Footer } from 'flowbite-react'
 import Footers from './components/Footer'
+import { Outlet, useLoaderData } from 'react-router-dom'
+// import Hero from '../components/Hero';
 
 function App() {
 
   return (
     <>
-
-    <Navbar></Navbar>
-    <Hero></Hero>
+  <Hero></Hero>
     <Body></Body>
-
     <SingleCards></SingleCards>
     <Contact></Contact>
   <Footers></Footers>
-
     </>
   )
 }

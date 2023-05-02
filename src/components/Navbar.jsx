@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -27,7 +28,7 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <a>Blog</a>
@@ -39,7 +40,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+            <Link to="/">Home</Link>
             </li>
             <li>
               <a>Blog</a>
@@ -47,7 +48,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <h1 className="mr-3 font-semibold">Md Afsar Khan</h1>
+          <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>
           <div className="avatar placeholder">
             <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
               <span className="text-xs">AA</span>
@@ -55,6 +56,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <Outlet></Outlet>
     </>
   );
 };
