@@ -15,7 +15,7 @@ const Banner = () => {
 </div> */}
 
       <div className=" w-full">
-        <div className="relative bg-yellow-50">
+        <div className="relative bg-[url('https://img.freepik.com/free-photo/happy-young-cook-uniform-holding-salad_171337-5342.jpg?w=740&t=st=1683009318~exp=1683009918~hmac=578de1c94b0119d3208fc285ed2a59668f9433653cc96d96251356a6841fb364')] bg-cover bg-right">
           <div className="container m-auto px-6 pt-32 md:px-12 lg:pt-[4.8rem] lg:px-7">
             <div className="flex items-center flex-wrap px-2 md:px-0">
               <div className="relative lg:w-6/12 lg:py-24 xl:py-32">
@@ -32,14 +32,7 @@ const Banner = () => {
                 </p>
               </div>
               <div className="ml-auto lg:w-6/12">
-                <img
-                  src="https://img.freepik.com/free-photo/happy-young-cook-uniform-holding-salad_171337-5342.jpg?w=740&t=st=1683009318~exp=1683009918~hmac=578de1c94b0119d3208fc285ed2a59668f9433653cc96d96251356a6841fb364"
-                  className=""
-                  alt="food illustration"
-                  loading="lazy"
-                  width="4500"
-                  height="4500"
-                />
+                
               </div>
             </div>
           </div>
