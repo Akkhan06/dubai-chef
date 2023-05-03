@@ -12,6 +12,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from '../ErrorPage/ErrorPage';
+import PrivateRouder from '../PrivateRouder/PrivateRouder';
 
   const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
         },
         {
             path: "view/:id",
-            element: <ViewDetails></ViewDetails>,
+            element: <PrivateRouder><ViewDetails></ViewDetails></PrivateRouder>,
             loader: ({params}) => fetch(`http://localhost:3000/view/${params.id}`)
         },
         {

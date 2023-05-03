@@ -4,9 +4,14 @@ import { AuthContext } from "./AuthProvider/AuthProvider";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logOut} = useContext(AuthContext)
   const [bisible, setBisible] = useState(false)
-  const [visit, setVisit] = useState(false)
+
+  const logoutHandler = () => {
+    logOut()
+  }
+
+  console.log(user)
 
   return (
     <>
@@ -57,15 +62,15 @@ const Navbar = () => {
           <>{user ?
            <>
            <h1 className={`font-semibold mr-2 ${bisible ? "" : "hidden"} translate-x-2`}>
-            Md Afsar Khan</h1> 
+            {user ? user.displayName : ""}</h1> 
             <div className="avatar placeholder mx-3">
             <div  onMouseEnter={() => setBisible(true)}
             onMouseLeave={() => setBisible(false)}
              className="bg-neutral-focus cursor-pointer text-neutral-content rounded-full w-8">
-              <span className="text-xs">AA</span>
+              <img src={user ? user.photoURL : ''} alt="" />
             </div>
           </div>
-           <h1 className="mr-3 font-semibold btn h-2"><Link to="/login">Log Out</Link></h1> 
+           <h1 className="mr-3 font-semibold btn h-2"><Link onClick={logoutHandler} to="/login">Log Out</Link></h1> 
            </>
            : <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>}</>
           

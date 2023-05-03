@@ -20,7 +20,7 @@ const RecipeSingle = ({ card }) => {
 }
   return (
     <div className="mx-auto">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card w-96 mt-3 bg-base-100 shadow-xl">
         <figure>
           <img src={image} className="h-80" alt="Shoes" />
         </figure>

@@ -3,12 +3,15 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceAngry } from "@fortawesome/free-regular-svg-icons";
 import { FaGithub, FaGoogle, FaLock, FaTwitter, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
-  const {loginUser} = useContext(AuthContext)
+  const {loginUser, githubUser, googleUser} = useContext(AuthContext)
   const [errores , setErrores] = useState('')
+  
+  const location = useLocation()
+  const navigate = location?.state?.from.pathname || "/"
 
   const loginHandler = (event) =>{
     event.preventDefault()
@@ -31,13 +34,13 @@ const Login = () => {
       <div className="main_div mx-auto">
         <div className="title">Login Form</div>
         <div className="social_icons">
-          <Link href="#">
+          <Link onClick={googleUser} href="#">
           <FaGoogle className="inline"/> <span>Google</span>
           </Link>
-          <a href="#">
+          <Link onClick={githubUser} href="#">
             <FaGithub className="inline"/>
             <span>Github</span>
-          </a>
+          </Link>
         </div>
         <form onSubmit={loginHandler} action="#">
           <div className="input_box">

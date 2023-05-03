@@ -6,8 +6,7 @@ import Rating from "react-rating";
 const Banner = () => {
   return (
     <div>
-
-     
+      
     </div>
   );
 };
