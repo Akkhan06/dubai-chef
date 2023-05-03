@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import {
+    FaBookmark,
   FaHeart,
+  FaRegBookmark,
   FaRegHeart,
   FaRegStar,
   FaStar,
@@ -9,6 +12,12 @@ import {
 import Rating from "react-rating";
 const RecipeSingle = ({ card }) => {
   const { image, recipe_name, cooking_method, rating } = card;
+
+  const [open, setOpen] = useState(false)
+
+  if (open) {
+    toast('BookMarked')
+}
   return (
     <div className="mx-auto">
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -24,19 +33,22 @@ const RecipeSingle = ({ card }) => {
           <p className="border-y-2 border-gray-50 py-3">
             {cooking_method.slice(0, 150)}
           </p>
+          <div className="card-actions flex justify-between">
+          
+          <>{!open ? <FaRegBookmark onClick={() => setOpen(true)}/> : <FaBookmark/> }   </>
 
-          <div className="card-actions justify-end">
-            <Rating
+            <div className=""><Rating
               className="text-orange-300"
               placeholderRating={rating}
               emptySymbol={<FaRegStar />}
               placeholderSymbol={<FaStar />}
               fullSymbol={<FaStar />}
             />{" "}
-            {rating}
+            {rating}</div>
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

@@ -12,6 +12,8 @@ import Contact from './components/Contact'
 import { Footer } from 'flowbite-react'
 import Footers from './components/Footer'
 import { Outlet, useLoaderData } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 // import Hero from '../components/Hero';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
     <SingleCards></SingleCards>
     <Contact></Contact>
   <Footers></Footers>
+  <ToastContainer/>
     </>
   )
 }

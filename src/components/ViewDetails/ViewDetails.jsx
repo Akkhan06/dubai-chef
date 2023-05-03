@@ -28,7 +28,7 @@ const ViewDetails = () => {
   const singleData = data.filter(x => x.category_id == id)
   const banners = bannerData.find(x => x.id == id)
 
-  
+
 
   return (
     <div className="">
@@ -78,7 +78,7 @@ const ViewDetails = () => {
 
 <div className="grid mx-auto grid-cols-3 my-6 max-w-[1240px]">
   {
-    singleData.map(x => <RecipeSingle card={x}></RecipeSingle>)
+    singleData.map(x => <RecipeSingle card={x} key={x.id}></RecipeSingle>)
   }
 </div>
       <Footers></Footers>
