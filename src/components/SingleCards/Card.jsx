@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Card = ({ card }) => {
   const { chef_name, id, experience, rating, chef_image, num_recipes, likes } =
     card;
-
+    
     const [count, setCount] = useState(false)
 
     const stringfys = parseInt(likes)
@@ -47,15 +47,14 @@ const Card = ({ card }) => {
               fullSymbol={
                 <FaStar/>
               }
-              
-
+        
             /> {rating}
             <div className="flex justify-between items-center">
             <p className="flex justify-between items-center gap-2"> <FaThumbsUp/> {count ? stringfys + 1 : stringfys - 1}</p>  <>{count ? <FaHeart onClick={countHandler}></FaHeart> : <FaRegHeart onClick={countHandler}/>}</>
             </div>
           </div>
           <div className="card-actions justify-end">
-            <Link to="/view">
+            <Link to={`/view/${id}`}>
               <button className="btn btn-outline btn-accent mt-2">
                 view recipes
               </button>

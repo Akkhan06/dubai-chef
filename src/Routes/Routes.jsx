@@ -1,28 +1,32 @@
 import React from 'react';
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
 import App from '../App';
 import ViewDetails from '../components/ViewDetails/ViewDetails';
 import Navbar from '../components/Navbar';
 import Login from '../components/Login&Register/Login';
 import Register from '../components/Login&Register/Register';
 import Trams from '../Trams';
-
+import AuthProvider from '../components/AuthProvider/AuthProvider';
+import Blog from "../components/Blog/Blog"
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import ErrorPage from '../ErrorPage/ErrorPage';
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Navbar></Navbar>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
             element: <App></App>
         },
         {
-            path: "view",
-            element: <ViewDetails></ViewDetails>
+            path: "view/:id",
+            element: <ViewDetails></ViewDetails>,
+            loader: ({params}) => fetch(`http://localhost:3000/view/${params.id}`)
         },
         {
             path: "login",
@@ -35,6 +39,10 @@ import Trams from '../Trams';
         {
             path: "trams",
             element: <Trams></Trams>
+        },
+        {
+          path: "blog",
+          element: <Blog></Blog>
         }
       ]
     },
@@ -43,7 +51,7 @@ import Trams from '../Trams';
 const Routes = () => {
     return (
         <div>
-            <RouterProvider router={router} />
+            <AuthProvider><RouterProvider router={router} /></AuthProvider>
         </div>
     );
 };

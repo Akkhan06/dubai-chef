@@ -1,7 +1,13 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "./AuthProvider/AuthProvider";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext)
+  const [bisible, setBisible] = useState(false)
+  const [visit, setVisit] = useState(false)
+
   return (
     <>
       <div className="navbar bg-base-300">
@@ -28,10 +34,10 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/">Home</Link>
+                <NavLink className={({ isActive }) => (isActive ? "bg-gray-300 font-semibold" : "")} to="/">Home</NavLink>
               </li>
               <li>
-                <a>Blog</a>
+                <NavLink className={({ isActive }) => (isActive ? "bg-gray-300 font-semibold" : "")} to="/blog">Blog</NavLink>
               </li>
             </ul>
           </div>
@@ -40,20 +46,29 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-            <Link to="/">Home</Link>
+            <NavLink className={({ isActive }) => (isActive ? "bg-gray-300 font-semibold" : "")} to="/">Home</NavLink>
             </li>
             <li>
-              <a>Blog</a>
+            <NavLink className={({ isActive }) => (isActive ? "bg-gray-300 font-semibold" : "")} to="/blog">Blog</NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>
-          <div className="avatar placeholder">
-            <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+          <>{user ?
+           <>
+           <h1 className={`font-semibold mr-2 ${bisible ? "" : "hidden"} translate-x-2`}>
+            Md Afsar Khan</h1> 
+            <div className="avatar placeholder mx-3">
+            <div  onMouseEnter={() => setBisible(true)}
+            onMouseLeave={() => setBisible(false)}
+             className="bg-neutral-focus cursor-pointer text-neutral-content rounded-full w-8">
               <span className="text-xs">AA</span>
             </div>
           </div>
+           <h1 className="mr-3 font-semibold btn h-2"><Link to="/login">Log Out</Link></h1> 
+           </>
+           : <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>}</>
+          
         </div>
       </div>
       <Outlet></Outlet>

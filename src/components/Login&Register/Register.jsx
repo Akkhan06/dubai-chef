@@ -1,17 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./reister.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext)
     const [accept, setAccepted] = useState(false)
     const handlerAccepted = event => {
         setAccepted(event.target.checked)
       }
+
+      const registerHandler = (event) => {
+        event.preventDefault()
+        const form = event.target
+        const name = form.name.value
+        const photo = form.image.value
+        const email = form.email.value
+        const password = form.password.value
+       
+        console.log(name, photo, email, password)
+
+        createUser(email, password)
+        .then(result => {
+          const user = result.user
+          console.log(user)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+      }
+
   return (
     <div>
       <div className="wrapper mx-auto my-10">
         <h2>Registration</h2>
-        <form action="#">
+        <form onSubmit={registerHandler} action="#">
           <div className="input-box">
             <input
               type="text"
