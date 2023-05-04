@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState()
   const {createUser, updateUser} = useContext(AuthContext)
     const [accept, setAccepted] = useState(false)
     const handlerAccepted = event => {
@@ -18,6 +19,19 @@ const Register = () => {
         const email = form.email.value
         const password = form.password.value
        
+        if(!name || !photo || !email || !password) {
+          setError("Cannot leave any field empty")
+          return
+      } 
+      
+      if(password.length < 6) {
+          setError("password at least 6 character")
+          return
+      }
+
+      setError(null)
+
+
         console.log(name, photo, email, password)
 
         createUser(email, password)
@@ -47,7 +61,7 @@ const Register = () => {
               type="text"
               name="name"
               placeholder="Enter your name"
-              required
+             
             />
           </div>
           <div className="input-box">
@@ -55,7 +69,7 @@ const Register = () => {
               type="text"
               name="image"
               placeholder="Prifile image"
-              required
+             
             />
           </div>
           <div className="input-box">
@@ -71,13 +85,14 @@ const Register = () => {
               type="password"
               name="password"
               placeholder="Create password"
-              required
+              
             />
           </div>
           <div className="policy">
             <input onClick={handlerAccepted} type="checkbox" />
             <h3>I accept all <Link className="text-blue-500" to="/trams">terms & condition</Link></h3>
           </div>
+          <h1 className="text-red-500">{error && error}</h1>
           <button  className="input-box button">
             <input disabled={!accept} type="Submit" value="Register Now" />
           </button>

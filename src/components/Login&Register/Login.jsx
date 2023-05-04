@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Login.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceAngry } from "@fortawesome/free-regular-svg-icons";
-import { FaGithub, FaGoogle, FaLock, FaTwitter, FaUser } from "react-icons/fa";
+import { FaGithub, FaGoogle, FaLock, FaUser } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
@@ -10,12 +8,13 @@ import app from "../../firebase/firebase.config";
 
 
 const Login = () => {
+  const [error, setError] = useState()
   const googleProvider = new GoogleAuthProvider()
   const githubProvider = new GithubAuthProvider()
  const auth = getAuth(app)
 
-  const {loginUser, githubUser, googleUser, updateUser} = useContext(AuthContext)
-  const [errores , setErrores] = useState('')
+  const {loginUser, googleUser, updateUser} = useContext(AuthContext)
+
   
   const navigate = useNavigate();
   
@@ -24,48 +23,47 @@ const Login = () => {
     console.log(location)
     const from = location?.state?.from.pathname || "/"
 
+
+    // ==========GOOGLE LOGIN SYSTEM==============
   const googleHandler = (event) => {
     event.preventDefault()
-  //   googleUser()
-  //   .then(result => {
-  //     const user = result.user
-  //     console.log(user)
-  //     navigate(from)
-  // })
+    signInWithPopup(auth, googleProvider) 
+    .then(result => {
+      console.log(result)
+      navigate(from)
+    })
+    .catch(error => {
+      
+    })
+  }
+
+// ==========GITHUB LOGIN SYSTEM==============
+  const githubUser = (event) => {
+    event.preventDefault()
+    signInWithPopup(auth, githubProvider)  
+    .then(result => {
+      console.log(result)
+      navigate(from)
+    })
+    .catch(error => {
+     
+    })
+}
+
+
 
   
-  // .catch(error => {
-  //     console.log(error.massage)
-  // })
-  signInWithPopup(auth, googleProvider) 
-  .then(result => {
-    console.log(result)
-    navigate(from)
-  })
-  .catch(error => {
-    console.log(error)
-  })
-
-
-
-  }
-  const githubHandler = () => {
-    githubUser()
-    .then(result => {
-      const user = result.user
-      navigate(from)
-  })
-  .catch(error => {
-      console.log(error.massage)
-  })
-  }
-
+  
   const loginHandler = (event) =>{
     event.preventDefault()
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
+    if(!email || !password) {
+      setError("Cannot leave any field empty")
+      return
+  }
     loginUser(email, password)
     .then(result => {
       const userProfile = result.user
@@ -73,8 +71,7 @@ const Login = () => {
       navigate(from)
     })
     .catch(error => {
-      console.log(error)
-      // setErrores(error.massage)
+      setError(error.message)
     })
   }
   return (
@@ -85,20 +82,20 @@ const Login = () => {
           <Link onClick={googleHandler} href="#">
           <FaGoogle className="inline"/> <span>Google</span>
           </Link>
-          <Link onClick={githubHandler} href="#">
+          <Link onClick={githubUser} href="#">
             <FaGithub className="inline"/>
             <span>Github</span>
           </Link>
         </div>
         <form onSubmit={loginHandler} action="#">
           <div className="input_box">
-            <input type="text" name="email" placeholder="Email" required />
+            <input type="text" name="email" placeholder="Email" />
             <div className="icon">
              <FaUser/>
             </div>
           </div>
           <div className="input_box">
-            <input type="password" name="password" placeholder="Password" required />
+            <input type="password" name="password" placeholder="Password"  />
             <div className="icon">
               <FaLock/>
             </div>
@@ -115,6 +112,9 @@ const Login = () => {
           <div className="input_box button">
             <input type="submit" value="Login" />
           </div>
+
+          <h1 className="text-red-500">{error && error}</h1>
+
           <div className="sign_up">
             Not a member? <Link to="/register">Signup now</Link>
           </div>
