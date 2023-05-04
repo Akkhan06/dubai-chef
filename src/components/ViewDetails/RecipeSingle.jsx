@@ -36,7 +36,6 @@ const RecipeSingle = ({ card }) => {
           </p>
           <div className="card-actions flex justify-between">
 
-          {/* <FaThumbsUp/> {count ? stringfys + 1 : stringfys - 1}</p>  <>{count ? <FaHeart onClick={countHandler}></FaHeart> : <FaRegHeart onClick={countHandler}/>}</> */}
           
           <>{!open ? <FaRegHeart onClick={() => setOpen(true)}/> : <FaHeart/> }   </>
 

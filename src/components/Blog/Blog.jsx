@@ -17,7 +17,7 @@ const Blog = () => {
 
   return (
     <div className="mx-auto md:w-[1220px]">
-      <button className="btn btn-primary text-center flex justify-center mt-10">downloadPdf</button>
+      <button onClick={downloadPdf} className="btn btn-primary text-center flex justify-center mt-10">downloadPdf</button>
 
       <div>
         <div className="mt-24 text-start">

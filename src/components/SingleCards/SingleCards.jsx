@@ -6,7 +6,7 @@ const SingleCards = () => {
     const [categoryes, setCategoryes] = useState([])
     console.log(categoryes)
     useEffect(() => {
-        fetch('http://localhost:3000/cards')
+        fetch('https://chef-recipe-server-akkhan06.vercel.app/cards')
         .then(res => res.json())
         .then(data => setCategoryes(data))
         .catch(error => console.log(error))
