@@ -9,6 +9,10 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     logOut()
+    .then(result => {
+      
+  }).catch(error => {})
+  
   }
 
   console.log(user)
@@ -59,10 +63,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <>{user ?
-           <>
-           <h1 className={`font-semibold mr-2 ${bisible ? "" : "hidden"} translate-x-2`}>
-            {user ? user.displayName : ""}</h1> 
+          <>
+          {user ? 
+          <> 
+          <h1 className={`font-semibold mr-2 ${bisible ? "" : "hidden"} translate-x-2`}>
+            {user.displayName}</h1> 
             <div className="avatar placeholder mx-3">
             <div  onMouseEnter={() => setBisible(true)}
             onMouseLeave={() => setBisible(false)}
@@ -70,9 +75,10 @@ const Navbar = () => {
               <img src={user ? user.photoURL : ''} alt="" />
             </div>
           </div>
-           <h1 className="mr-3 font-semibold btn h-2"><Link onClick={logoutHandler} to="/login">Log Out</Link></h1> 
+           <h1 className="mr-3 font-semibold btn h-2"><Link onClick={logoutHandler} to="">Log Out</Link></h1> 
            </>
-           : <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>}</>
+           : <h1 className="mr-3 font-semibold btn btn-secondary"><Link to="/login">Login</Link></h1>}
+           </>
           
         </div>
       </div>

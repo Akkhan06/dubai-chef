@@ -10,6 +10,7 @@ import {
   FaThumbsUp,
 } from "react-icons/fa";
 import Rating from "react-rating";
+import LazyLoad from "react-lazy-load";
 const RecipeSingle = ({ card }) => {
   const { image, recipe_name, cooking_method, rating } = card;
 
@@ -22,7 +23,7 @@ const RecipeSingle = ({ card }) => {
     <div className="mx-auto">
       <div className="card w-96 mt-3 bg-base-100 shadow-xl">
         <figure>
-          <img src={image} className="h-80" alt="Shoes" />
+          <LazyLoad><img src={image} className="h-80" alt="Shoes" /></LazyLoad>
         </figure>
         <div className="card-body">
           <h2 className="card-title">

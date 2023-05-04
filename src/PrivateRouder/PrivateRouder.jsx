@@ -1,13 +1,22 @@
 import React, { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../components/AuthProvider/AuthProvider';
 
 const PrivateRouder = ({children}) => {
-    const {user} = useContext(AuthContext)
+    const {user, lodding} = useContext(AuthContext)
+
+    if(!lodding) {
+        return <h1>lodding...</h1>
+    }
+
     if(user){
         return children
     }
-    return <Navigate to='/login'>
+    
+    const location = useLocation()
+    console.log(location)
+
+    return <Navigate replace  /* MUST USE THIS STACTURE FOR TARGETED LOCATION**/ state={{from: location}}/** */  to='/login'>
             
         </Navigate>
     ;

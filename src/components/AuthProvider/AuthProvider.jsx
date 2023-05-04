@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../../firebase/firebase.config"
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -8,50 +8,46 @@ const AuthProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
 
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState(null)
+    const [lodding, setLodding] = useState(false)
 
     const createUser = (email, password) => {
+        setLodding(false)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const loginUser = (email, password) => {
+        setLodding(false)
         return signInWithEmailAndPassword(auth, email, password)
     } 
     
     const githubUser = () => {
-        signInWithPopup(auth, githubProvider)
-        .then(result => {
-            const user = result.user
-            setUser(user)
-            console.log(user)
-        })
-        .catch(error => {
-            console.log(error.massage)
-        })
-        
+        setLodding(false)
+       return signInWithPopup(auth, githubProvider)    
     }
 
-    const googleUser = () => {
-        signInWithPopup(auth, googleProvider)
-        .then(result => {
-            const user = result.user
-            setUser(user)
-            console.log(user)
-        })
-        .catch(error => {
-            console.log(error.massage)
-        })    
-    }
+    // const googleUser = () => {
+    //     setLodding(true)
+    // //   return  signInWithPopup(auth, googleProvider)    
+    // }
 
     const logOut = () => {
-        signOut(auth)
-        .then(result => {
-            setUser('')
-        }).catch(error => {})
+        setLodding(false)
+       return signOut(auth)
+    }
+
+    const updateUser = (name, image) => {
+       return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: image
+          })
     }
 
     useEffect(() => {
-
+        const unsubscribe = onAuthStateChanged(auth, userLogin => {
+            setUser(userLogin)
+            setLodding(true)
+        })
+        return () => unsubscribe()
     },[])
 
     const userInfo = {
@@ -59,8 +55,10 @@ const AuthProvider = ({children}) => {
         createUser,
         loginUser,
         githubUser,
-        googleUser,
-        logOut
+        // googleUser,
+        logOut,
+        updateUser,
+        lodding
     }
     
     return (

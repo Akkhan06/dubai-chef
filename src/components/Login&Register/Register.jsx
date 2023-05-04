@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser, updateUser} = useContext(AuthContext)
     const [accept, setAccepted] = useState(false)
     const handlerAccepted = event => {
         setAccepted(event.target.checked)
@@ -24,11 +24,17 @@ const Register = () => {
         .then(result => {
           const user = result.user
           console.log(user)
+          updateUser(name, photo)
+          .then((result) => {
+              const userss = result.user
+              console.log(userss)
+          }).catch((error) => {
+          
+          })
         })
         .catch(error => {
           console.log(error)
         })
-
       }
 
   return (

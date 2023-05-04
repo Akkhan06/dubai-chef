@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from '../ErrorPage/ErrorPage';
 import PrivateRouder from '../PrivateRouder/PrivateRouder';
+import Banner from '../components/ViewDetails/Banner';
 
   const router = createBrowserRouter([
     {
@@ -25,10 +26,14 @@ import PrivateRouder from '../PrivateRouder/PrivateRouder';
             element: <App></App>
         },
         {
-            path: "view/:id",
+            path: "/cards/:id",
             element: <PrivateRouder><ViewDetails></ViewDetails></PrivateRouder>,
-            loader: ({params}) => fetch(`http://localhost:3000/view/${params.id}`)
         },
+        // {
+        //   path: "view/:id",
+        //   element: <PrivateRouder><Banner></Banner></PrivateRouder>
+          
+        // },
         {
             path: "login",
             element: <Login></Login>

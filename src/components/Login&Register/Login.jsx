@@ -3,15 +3,62 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceAngry } from "@fortawesome/free-regular-svg-icons";
 import { FaGithub, FaGoogle, FaLock, FaTwitter, FaUser } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../firebase/firebase.config";
+
 
 const Login = () => {
-  const {loginUser, githubUser, googleUser} = useContext(AuthContext)
+  const googleProvider = new GoogleAuthProvider()
+  const githubProvider = new GithubAuthProvider()
+ const auth = getAuth(app)
+
+  const {loginUser, githubUser, googleUser, updateUser} = useContext(AuthContext)
   const [errores , setErrores] = useState('')
   
-  const location = useLocation()
-  const navigate = location?.state?.from.pathname || "/"
+  const navigate = useNavigate();
+  
+  // ===========SET TARGETED LOCATION===========
+    const location = useLocation()
+    console.log(location)
+    const from = location?.state?.from.pathname || "/"
+
+  const googleHandler = (event) => {
+    event.preventDefault()
+  //   googleUser()
+  //   .then(result => {
+  //     const user = result.user
+  //     console.log(user)
+  //     navigate(from)
+  // })
+
+  
+  // .catch(error => {
+  //     console.log(error.massage)
+  // })
+  signInWithPopup(auth, googleProvider) 
+  .then(result => {
+    console.log(result)
+    navigate(from)
+  })
+  .catch(error => {
+    console.log(error)
+  })
+
+
+
+  }
+  const githubHandler = () => {
+    githubUser()
+    .then(result => {
+      const user = result.user
+      navigate(from)
+  })
+  .catch(error => {
+      console.log(error.massage)
+  })
+  }
 
   const loginHandler = (event) =>{
     event.preventDefault()
@@ -23,6 +70,7 @@ const Login = () => {
     .then(result => {
       const userProfile = result.user
       console.log(userProfile)
+      navigate(from)
     })
     .catch(error => {
       console.log(error)
@@ -34,10 +82,10 @@ const Login = () => {
       <div className="main_div mx-auto">
         <div className="title">Login Form</div>
         <div className="social_icons">
-          <Link onClick={googleUser} href="#">
+          <Link onClick={googleHandler} href="#">
           <FaGoogle className="inline"/> <span>Google</span>
           </Link>
-          <Link onClick={githubUser} href="#">
+          <Link onClick={githubHandler} href="#">
             <FaGithub className="inline"/>
             <span>Github</span>
           </Link>
