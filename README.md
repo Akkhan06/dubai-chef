@@ -1,4 +1,4 @@
-### JobMarket
+### Dubai Chef club
 
 ## Live Link
 Hosted in firebase -> [Chef_recipes](https://jobmarket24.netlify.app/)
