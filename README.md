@@ -1,7 +1,7 @@
 ### Dubai Chef club
 
 ## Live Link
-Hosted in firebase -> [Chef_recipes](https://jobmarket24.netlify.app/)
+Hosted in firebase -> [Chef_recipes](https://chaf-recipe.web.app/)
 
 ## This website feature
 

@@ -17,10 +17,8 @@ const Blog = () => {
 
   return (
     <div className="mx-auto md:w-[1220px]">
-      <button onClick={downloadPdf} className="btn btn-primary text-center flex justify-center mt-10">download pdf</button>
-
       <div>
-        <div className="mt-24 text-start">
+        <div className="mt-10 text-start">
           <h1 className="font-bold">
             1. Tell us the differences between uncontrolled and controlled
             components.
@@ -86,6 +84,7 @@ const Blog = () => {
           </p>
         </div>
       </div>
+      <button onClick={downloadPdf} className="btn btn-primary mb-5 block mx-auto text-center mt-10">download pdf</button>
     </div>
   );
 };
