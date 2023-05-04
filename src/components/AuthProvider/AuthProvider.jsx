@@ -5,7 +5,7 @@ export const AuthContext = createContext(null)
 const auth = getAuth(app)
 
 const AuthProvider = ({children}) => {
-    const googleProvider = new GoogleAuthProvider()
+    // const googleProvider = new GoogleAuthProvider()
     
 
     const [user, setUser] = useState(null)

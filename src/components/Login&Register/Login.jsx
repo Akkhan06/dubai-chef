@@ -13,7 +13,7 @@ const Login = () => {
   const githubProvider = new GithubAuthProvider()
  const auth = getAuth(app)
 
-  const {loginUser, googleUser, updateUser} = useContext(AuthContext)
+  const {loginUser} = useContext(AuthContext)
 
   
   const navigate = useNavigate();

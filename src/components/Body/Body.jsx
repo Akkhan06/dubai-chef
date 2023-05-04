@@ -19,19 +19,14 @@ const Body = () => {
             </div>
             <div className="md:7/12 lg:w-6/12">
               <h2 className="text-2xl text-gray-900 font-bold md:text-4xl">
-                Nuxt development is carried out by passionate developers
+              Roasted Butternut Squash and Sage Risotto with Crispy Pancetta
               </h2>
               <p className="mt-6 text-gray-600">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum
-                omnis voluptatem accusantium nemo perspiciatis delectus atque
-                autem! Voluptatum tenetur beatae unde aperiam, repellat expedita
-                consequatur! Officiis id consequatur atque doloremque!
+              This Roasted Butternut Squash and Sage Risotto with Crispy Pancetta recipe is the perfect comfort food for chilly evenings. The creamy risotto is infused with fragrant sage and roasted butternut squash, while the crispy pancetta adds a delicious crunch to each bite.
               </p>
               <p className="mt-4 text-gray-600">
                 {" "}
-                Nobis minus voluptatibus pariatur dignissimos libero quaerat
-                iure expedita at? Asperiores nemo possimus nesciunt dicta veniam
-                aspernatur quam mollitia.
+                This dish is easy to prepare and will impress your dinner guests. It's a great vegetarian option, but you can also add chicken or shrimp for extra protein. Whether you're a seasoned chef or a novice cook, this recipe is sure to become a favorite in your household.
               </p>
             </div>
           </div>
