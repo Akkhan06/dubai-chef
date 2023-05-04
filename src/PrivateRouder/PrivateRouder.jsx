@@ -1,23 +1,25 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../components/AuthProvider/AuthProvider';
+import LoadingSpinner from '../Lodding';
 
 const PrivateRouder = ({children}) => {
     const {user, lodding} = useContext(AuthContext)
+    const location = useLocation()
 
-    if(!lodding) {
-        return <h1>lodding...</h1>
+    console.log(lodding)
+
+    if(lodding) {
+        return <LoadingSpinner></LoadingSpinner>
     }
 
     if(user){
         return children
     }
-    
-    const location = useLocation()
-    console.log(location)
+      console.log(location)
 
     return <Navigate replace  /* MUST USE THIS STACTURE FOR TARGETED LOCATION**/ state={{from: location}}/** */  to='/login'>
-            
+
         </Navigate>
     ;
 };

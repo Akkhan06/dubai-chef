@@ -1,7 +1,7 @@
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { FaHeart, FaRegHeart, FaRegStar, FaStar, FaThumbsUp } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaRegStar, FaRegThumbsUp, FaStar, FaThumbsUp } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import LazyLoad from 'react-lazy-load';
@@ -51,7 +51,7 @@ const Card = ({ card }) => {
         
             /> {rating}
             <div className="flex justify-between items-center">
-            <p className="flex justify-between items-center gap-2"> <FaThumbsUp/> {count ? stringfys + 1 : stringfys - 1}</p>  <>{count ? <FaHeart onClick={countHandler}></FaHeart> : <FaRegHeart onClick={countHandler}/>}</>
+            <p className="flex justify-between items-center gap-2"> <FaHeart/> {count ? stringfys + 1 : stringfys - 1}</p>  <>{count ? <FaThumbsUp onClick={countHandler}></FaThumbsUp> : <FaRegThumbsUp onClick={countHandler}/>}</>
             </div>
           </div>
           <div className="card-actions justify-end">

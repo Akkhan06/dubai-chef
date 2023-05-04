@@ -17,7 +17,7 @@ const RecipeSingle = ({ card }) => {
   const [open, setOpen] = useState(false)
 
   if (open) {
-    toast('BookMarked')
+    toast('the recipe is your favorite')
 }
   return (
     <div className="mx-auto">
@@ -35,8 +35,10 @@ const RecipeSingle = ({ card }) => {
             {cooking_method.slice(0, 150)}
           </p>
           <div className="card-actions flex justify-between">
+
+          {/* <FaThumbsUp/> {count ? stringfys + 1 : stringfys - 1}</p>  <>{count ? <FaHeart onClick={countHandler}></FaHeart> : <FaRegHeart onClick={countHandler}/>}</> */}
           
-          <>{!open ? <FaRegBookmark onClick={() => setOpen(true)}/> : <FaBookmark/> }   </>
+          <>{!open ? <FaRegHeart onClick={() => setOpen(true)}/> : <FaHeart/> }   </>
 
             <div className=""><Rating
               className="text-orange-300"
