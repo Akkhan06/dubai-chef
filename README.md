@@ -1,12 +1,12 @@
 ### JobMarket
 
 ## Live Link
-Hosted in Netlify -> [JobMarket](https://jobmarket24.netlify.app/)
+Hosted in firebase -> [Chef_recipes](https://jobmarket24.netlify.app/)
 
 ## This website feature
 
-- Apply for job
-- Job details page 
-- Job filter by (Remote) & (Onsite)
-- Assignment chart with recharts
-- Dedicated blog page
+- About of dubai chef
+- Will know their recipe test
+- How to cooking recipes
+- Which recipe is Farms
+- Which chef is the best
