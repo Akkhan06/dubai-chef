@@ -16,7 +16,7 @@ const ViewDetails = () => {
   const { id } = useParams();
 
   const [data, setData] = useState([]);
-  const [bannerData, setBannerData] = useState([]);
+ 
 
   useEffect(() => {
     fetch(`https://chef-recipe-server-akkhan06.vercel.app/cards/${id}`)

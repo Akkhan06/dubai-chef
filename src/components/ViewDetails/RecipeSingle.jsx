@@ -12,7 +12,7 @@ import {
 import Rating from "react-rating";
 import LazyLoad from "react-lazy-load";
 const RecipeSingle = ({ card }) => {
-  const { image, recipe_name, cooking_method, rating } = card;
+  const { image, recipe_name, cooking_method, rating, ingradeiance } = card;
 
   const [open, setOpen] = useState(false)
 
@@ -30,6 +30,11 @@ const RecipeSingle = ({ card }) => {
             {recipe_name}
             <div className="badge badge-secondary">NEW</div>
           </h2>
+          <div className="border-2 rounded-md border-gray-100 p-3">
+          <div className="badge ml-0 mt-3">Ingradeiance</div>
+          <div className="mt-2 font-semibold justify-start text-start"><h1>1. {ingradeiance[0]} </h1> <h1>2. {ingradeiance[1]}</h1> <h1>3. {ingradeiance[2]}</h1> <h1>4. {ingradeiance[3]}</h1> <h1>5. {ingradeiance[4]}</h1></div>
+          </div>
+
           <div className="badge ml-0 mt-3">Cooking method</div>
           <p className="border-y-2 border-gray-50 py-3">
             {cooking_method.slice(0, 150)}
